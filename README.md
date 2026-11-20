@@ -41,6 +41,21 @@ node --test tests/game.test.cjs tests/score-regression.cjs
 
 Le 20 novembre 2026, **23 tests automatisés réussis**, dont les neuf exemples du contrat, les erreurs et les fins de partie. Les tests du navigateur vérifient aussi la synchronisation de l’API avec l’écran. [Attendus, résultats, environnement et preuves](docs/verification.md).
 
+### Vérification sur GitHub Pages
+
+Le **20 novembre 2026**, **24 scénarios automatisés réussis, aucun échec**, sur [le site publié](https://blackcat98simo.github.io/code-secret/), avec Chrome **157.0.8103.79** sur Windows, piloté par Playwright dans un contexte neuf, sans cache préalable et avec les service workers bloqués. Version **0.2.0**, publication correspondant au [commit 5513df4](https://github.com/BlackCat98Simo/code-secret/commit/5513df463a1fddce4b487c6df2ecb7029119d561) ; les quatre fichiers du jeu sont identiques à ceux du tag `jalon-1`.
+
+| Contrôle en ligne | Attendu | Obtenu |
+| --- | --- | --- |
+| Fichiers HTML, CSS et JavaScript | HTTP 200 et contenu identique au dépôt | 4/4 conformes |
+| Jeu visible et clavier | Trois couleurs refusées sans essai ; quatre acceptées ; historique et redémarrage utilisables | Réussi |
+| API 0.2 et T01–T09 | API seulement avec `?test=1`, configuration exacte, indices officiels et même partie que l’écran | Réussi |
+| Erreurs et copies | Priorités respectées, refus sans essai, démarrage invalide sans mutation, copies indépendantes | Réussi : 14 saisies et 12 démarrages invalides contrôlés |
+| Cycle de vie | Victoire au 10e, défaite à 10, blocage après fin, remise à zéro | Réussi |
+| Affichage étroit | Historique de dix essais sans débordement horizontal à 320/390/720 px | Réussi en simulation |
+
+La comparaison porte aussi sur chaque proposition, ses indices et le compteur affiché. Aucune erreur JavaScript d’exécution ni erreur de chargement des ressources du jeu observée. Un message de console concerne uniquement l’icône `favicon.ico` absente (404), sans effet observé sur le jeu ou l’API. [Rapport détaillé avec attendus/obtenus](docs/tests-pages.json) et [procédure reproductible](docs/verification.md#vérification-sur-github-pages).
+
 Correction documentée : pour le secret rouge–rouge–bleu–vert et quatre rouges proposés, attendu **2 bien / 0 mal** ; le prototype donnait **2 / 2**, le moteur corrigé donne **2 / 0**. Les preuves avant/après et le cas reproductible sont conservés dans le guide de vérification.
 
 ## Se repérer
@@ -57,8 +72,8 @@ Correction documentée : pour le secret rouge–rouge–bleu–vert et quatre ro
 
 ## Limites, questions ouvertes et reprise
 
-L’API est vérifiée localement, pas encore sur une URL publiée ni avec l’outil officiel de l’enseignant. Les largeurs mobiles sont simulées : téléphone réel, lecteur d’écran et relecture par un camarade restent à vérifier. Aucune sauvegarde de partie ni installation PWA (application web installable) n’est fournie.
+Le jeu et l’API sont vérifiés localement et sur GitHub Pages avec les tests du projet ; l’outil officiel de l’enseignant n’a pas été utilisé. Les largeurs mobiles sont simulées : téléphone réel, lecteur d’écran et relecture par un camarade restent à vérifier. Aucune sauvegarde de partie ni installation PWA (application web installable) n’est fournie.
 
-Questions ouvertes : l’interface reste-t-elle confortable sur un vrai téléphone ? L’API passera-t-elle l’outil enseignant sur la version publiée ? Pour J2 : vérifier l’API sur GitHub Pages, effectuer un essai sur un vrai téléphone et recueillir le retour d’un camarade. La prise en compte d’AGENTS.md devra être contrôlée dans une nouvelle tâche ; sa seule présence ne garantit pas le résultat.
+Questions ouvertes : l’interface reste-t-elle confortable sur un vrai téléphone ? L’API passera-t-elle l’outil enseignant sur la version publiée ? Pour J2 : compléter ces deux vérifications et recueillir le retour d’un camarade. La prise en compte d’AGENTS.md devra être contrôlée dans une nouvelle tâche ; sa seule présence ne garantit pas le résultat.
 
 Projet individuel maintenu dans le dépôt de **BlackCat98Simo**. Pour signaler un problème : [ouvrir une issue](https://github.com/BlackCat98Simo/code-secret/issues) avec les étapes, le résultat attendu, le résultat observé et la version utilisée, sans donnée privée. Aucun compte, paiement, service d’IA ou clé d’accès n’est intégré au jeu.

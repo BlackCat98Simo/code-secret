@@ -1,0 +1,22 @@
+{
+  "commit": "5513df463a1fddce4b487c6df2ecb7029119d561",
+  "tagCommit": "ccd7755bce00a63ef0d1829450cef511c5d2d84d",
+  "assets": [
+    {
+      "path": "app.js",
+      "sha": "1cc1f41966feb61e288cacb0e625620ac34d105e"
+    },
+    {
+      "path": "game.js",
+      "sha": "edd83812088fb4a00d19435b15da0cb68da4e865"
+    },
+    {
+      "path": "index.html",
+      "sha": "b40d04e82c1fb6b0de07514f216068b52989b1bf"
+    },
+    {
+      "path": "style.css",
+      "sha": "cd606613f8d5e4da01f845c78a1abad147153556"
+    }
+  ]
+}

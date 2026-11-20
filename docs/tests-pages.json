@@ -1,0 +1,214 @@
+{
+  "url": "https://blackcat98simo.github.io/code-secret/",
+  "startedAt": "2026-11-20T20:26:15.795Z",
+  "timezone": "Europe/Zurich",
+  "codeVersion": "0.2.0",
+  "repositoryCommit": "5513df463a1fddce4b487c6df2ecb7029119d561",
+  "tag": "jalon-1",
+  "tagCommit": "ccd7755bce00a63ef0d1829450cef511c5d2d84d",
+  "environment": {
+    "os": "win32",
+    "browser": "157.0.8103.79",
+    "runner": "Playwright",
+    "freshContext": true,
+    "serviceWorkers": "blocked"
+  },
+  "checks": [
+    {
+      "id": "P01-assets",
+      "expected": "HTTP 200 et contenu des quatre fichiers identique au manifeste du dépôt",
+      "observed": "4/4 fichiers identiques : index.html, style.css, game.js, app.js",
+      "status": "passed"
+    },
+    {
+      "id": "P02-jeu-normal",
+      "expected": "Partie immédiate, API absente, trois couleurs refusées puis quatre acceptées",
+      "observed": "Partie immédiate, API absente, trois couleurs refusées puis quatre acceptées",
+      "status": "passed"
+    },
+    {
+      "id": "P03-clavier",
+      "expected": "Nouvelle partie, focus, quatre choix au clavier puis un essai par Entrée",
+      "observed": "Nouvelle partie, focus, quatre choix au clavier puis un essai par Entrée",
+      "status": "passed"
+    },
+    {
+      "id": "P04-mode-test",
+      "expected": "API 0.2, état initial exact et autres paramètres URL conservés",
+      "observed": "API 0.2, état initial exact et autres paramètres URL conservés",
+      "status": "passed"
+    },
+    {
+      "id": "P05-configuration",
+      "expected": "Configuration exacte, synchrone, JSON et copie indépendante",
+      "observed": "Configuration exacte, synchrone, JSON et copie indépendante",
+      "status": "passed"
+    },
+    {
+      "id": "T01",
+      "expected": "1 bien / 2 mal, un essai, écran et état cohérents",
+      "observed": "1 bien / 2 mal, un essai, écran et état cohérents",
+      "status": "passed"
+    },
+    {
+      "id": "T02",
+      "expected": "0 bien / 2 mal, un essai, écran et état cohérents",
+      "observed": "0 bien / 2 mal, un essai, écran et état cohérents",
+      "status": "passed"
+    },
+    {
+      "id": "T03",
+      "expected": "0 bien / 4 mal, un essai, écran et état cohérents",
+      "observed": "0 bien / 4 mal, un essai, écran et état cohérents",
+      "status": "passed"
+    },
+    {
+      "id": "T04",
+      "expected": "2 bien / 2 mal, un essai, écran et état cohérents",
+      "observed": "2 bien / 2 mal, un essai, écran et état cohérents",
+      "status": "passed"
+    },
+    {
+      "id": "T05",
+      "expected": "4 bien / 0 mal, un essai, écran et état cohérents",
+      "observed": "4 bien / 0 mal, un essai, écran et état cohérents",
+      "status": "passed"
+    },
+    {
+      "id": "T06",
+      "expected": "2 bien / 0 mal, un essai, écran et état cohérents",
+      "observed": "2 bien / 0 mal, un essai, écran et état cohérents",
+      "status": "passed"
+    },
+    {
+      "id": "T07",
+      "expected": "2 bien / 2 mal, un essai, écran et état cohérents",
+      "observed": "2 bien / 2 mal, un essai, écran et état cohérents",
+      "status": "passed"
+    },
+    {
+      "id": "T08",
+      "expected": "4 bien / 0 mal, un essai, écran et état cohérents",
+      "observed": "4 bien / 0 mal, un essai, écran et état cohérents",
+      "status": "passed"
+    },
+    {
+      "id": "T09",
+      "expected": "1 bien / 2 mal, un essai, écran et état cohérents",
+      "observed": "1 bien / 2 mal, un essai, écran et état cohérents",
+      "status": "passed"
+    },
+    {
+      "id": "P06-refus",
+      "expected": "Type avant longueur avant couleur ; refus atomiques et messages visibles",
+      "observed": "14 saisies invalides refusées, puis quatre violets acceptés",
+      "status": "passed"
+    },
+    {
+      "id": "P07-demarrage-invalide",
+      "expected": "Error codée rejetée, état complet et interface inchangés",
+      "observed": "12 démarrages invalides rejetés sans changer même lastError ni le secret en cours",
+      "status": "passed"
+    },
+    {
+      "id": "P08-copies-getters",
+      "expected": "Entrées et sorties indépendantes, getters synchrones sans effet sur écran et erreur",
+      "observed": "Entrées et sorties indépendantes, getters synchrones sans effet sur écran et erreur",
+      "status": "passed"
+    },
+    {
+      "id": "P09-ui-vers-api",
+      "expected": "Choix et validation par les contrôles visibles relus exactement par l’API",
+      "observed": "Choix et validation par les contrôles visibles relus exactement par l’API",
+      "status": "passed"
+    },
+    {
+      "id": "P10-cycle-won",
+      "expected": "Refus à 9 essais, victoire au dixième, blocage puis remise à zéro",
+      "observed": "Refus à 9 essais, victoire au dixième, blocage puis remise à zéro",
+      "status": "passed"
+    },
+    {
+      "id": "P10-cycle-lost",
+      "expected": "Défaite à 10 essais, blocage puis remise à zéro",
+      "observed": "Défaite à 10 essais, blocage puis remise à zéro",
+      "status": "passed"
+    },
+    {
+      "id": "P11-redemarrage-aleatoire",
+      "expected": "startGame(), undefined, {} et bouton réinitialisent les données et l’écran",
+      "observed": "startGame(), undefined, {} et bouton réinitialisent les données et l’écran",
+      "status": "passed"
+    },
+    {
+      "id": "P12-responsive",
+      "expected": "Historique de 10 essais lisible, aucun débordement à 320/390/720 px",
+      "observed": "Historique de 10 essais lisible, aucun débordement à 320/390/720 px",
+      "status": "passed"
+    },
+    {
+      "id": "P13-rechargement",
+      "expected": "Rechargement = not-started ; test=0 et absence du paramètre = API absente",
+      "observed": "Rechargement = not-started ; test=0 et absence du paramètre = API absente",
+      "status": "passed"
+    },
+    {
+      "id": "P14-erreurs-techniques",
+      "expected": "Aucune erreur JavaScript ni requête réseau échouée ; ressources du jeu sans erreur HTTP",
+      "observed": "0 erreur JavaScript, 0 requête échouée, 0 erreur HTTP de ressource applicative ; 1 message(s) console pour favicon.ico uniquement",
+      "status": "passed"
+    }
+  ],
+  "assets": [
+    {
+      "path": "app.js",
+      "status": 200,
+      "gitBlobSha": "1cc1f41966feb61e288cacb0e625620ac34d105e",
+      "expected": "1cc1f41966feb61e288cacb0e625620ac34d105e"
+    },
+    {
+      "path": "game.js",
+      "status": 200,
+      "gitBlobSha": "edd83812088fb4a00d19435b15da0cb68da4e865",
+      "expected": "edd83812088fb4a00d19435b15da0cb68da4e865"
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "gitBlobSha": "b40d04e82c1fb6b0de07514f216068b52989b1bf",
+      "expected": "b40d04e82c1fb6b0de07514f216068b52989b1bf"
+    },
+    {
+      "path": "style.css",
+      "status": 200,
+      "gitBlobSha": "cd606613f8d5e4da01f845c78a1abad147153556",
+      "expected": "cd606613f8d5e4da01f845c78a1abad147153556"
+    }
+  ],
+  "runtimeErrors": [],
+  "failedRequests": [],
+  "httpErrors": [],
+  "consoleErrors": [
+    {
+      "message": "Failed to load resource: the server responded with a status of 404 ()",
+      "location": {
+        "url": "https://blackcat98simo.github.io/favicon.ico",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "limitations": [
+    "Outil officiel enseignant non utilisé",
+    "Pas de téléphone physique ni de lecteur d’écran",
+    "Largeurs mobiles simulées, pas de validation tactile réelle"
+  ],
+  "status": "passed",
+  "finishedAt": "2026-11-20T20:26:41.384Z",
+  "summary": {
+    "passed": 24,
+    "failed": 0
+  }
+}

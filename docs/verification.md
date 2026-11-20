@@ -48,6 +48,24 @@ Test d’intégration avec Chrome et le module Node.js Playwright disponibles : 
 
 Parcours automatisé dans Chrome : ouvrir le fichier local, choisir trois couleurs, valider, puis choisir la quatrième et valider. Attendu : refus sans essai ni historique à trois couleurs ; un essai et une entrée à quatre. Résultat et version consignés dans [test-documentation.txt](test-documentation.txt).
 
+## Vérification sur GitHub Pages
+
+Le 20 novembre 2026, la suite [tests/published.cjs](../tests/published.cjs) a exécuté **24 scénarios avec succès** sur https://blackcat98simo.github.io/code-secret/. Chrome **157.0.8103.79**, Windows, Playwright, contexte neuf et service workers bloqués. Il s’agit de tests sur l’application distante, sans remplacement du moteur ni du générateur aléatoire.
+
+La version publiée testée correspond au commit `5513df463a1fddce4b487c6df2ecb7029119d561`. Les empreintes des quatre fichiers exécutés sont comparées au [manifeste de référence](deployment-manifest.json) : réponses HTTP 200 et contenus identiques au dépôt, également identiques aux fichiers du jeu dans le tag `jalon-1` (`ccd7755`). Les modifications de documentation et de tests ultérieures ne changent pas ces fichiers.
+
+Le [rapport JSON](tests-pages.json) conserve pour chaque scénario son identifiant, l’attendu, l’observé et le statut, ainsi que les versions, horaires UTC et empreintes contrôlées. Il comprend T01–T09, les refus (14 saisies, 12 démarrages invalides), les copies indépendantes, les getters, les promesses de mutation, la synchronisation écran/API dans les deux sens, les fins de partie, les redémarrages et le rechargement. Le jeu normal est aussi contrôlé au clavier ; l’interface est vérifiée aux largeurs 320, 390 et 720 px, avec un historique de dix essais pour le contrôle étroit.
+
+Aucune erreur JavaScript d’exécution, requête échouée ou erreur HTTP de ressource applicative n’a été observée. Le message de console 404 pour `favicon.ico` est enregistré séparément : il concerne l’icône du site, sans effet observé sur les scénarios fonctionnels. Les captures de l’interface sur ordinateur et à 390 px ont été inspectées ; elles restent dans `tmp/`.
+
+Pour reproduire, depuis la racine, avec Chrome et Playwright disponibles selon les mêmes prérequis que le test local :
+
+```sh
+node tests/published.cjs
+```
+
+La cible par défaut est le site GitHub Pages. `BASE_URL` permet de choisir une autre cible. Le manifeste décrit la version attendue : s’il y a une modification intentionnelle des fichiers du jeu, vérifier le nouveau commit puis actualiser ce manifeste avant de tester cette nouvelle version. La commande réécrit `docs/tests-pages.json` et les captures de travail ; conserver les anciennes preuves dans Git.
+
 ## Non vérifié
 
-URL GitHub Pages, appareil tactile réel, lecteur d’écran, outil officiel de l’enseignant et relecture par un camarade. La présence et le contenu d’AGENTS.md sont contrôlés ; sa découverte et son application dans une nouvelle session restent à vérifier.
+Appareil tactile réel, lecteur d’écran, outil officiel de l’enseignant et relecture par un camarade. La présence et le contenu d’AGENTS.md sont contrôlés ; sa découverte et son application dans une nouvelle session restent à vérifier. La vérification en ligne ci-dessus remplace la précédente limite concernant l’URL publiée.
