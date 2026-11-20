@@ -1,0 +1,4 @@
+20 novembre 2026. Code v0.2.0, commit df1dfe7. Windows, Chrome, automatisation Playwright.
+Trois couleurs : attendu = refus, 0 essai, historique vide ; obtenu = refus affiché, Essai 1 / 10, 0 entrée. RÉUSSI.
+Quatre couleurs : attendu = 1 essai et 1 entrée ; obtenu = 9 restants et 1 entrée. RÉUSSI.
+Documentation : liens relatifs existants et rendu Markdown sans débordement vérifiés. Aucun essai en nouvelle session Codex ni sur téléphone réel.

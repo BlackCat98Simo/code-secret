@@ -1,78 +1,61 @@
 # Code secret
 
-Jeu solo inspiré du Mastermind, réalisé avec Codex. Version **0.2.0**, jalon **J1**, tag de référence : **`jalon-1`**.
+Jeu solo de déduction inspiré du Mastermind, réalisé avec Codex dans le cadre de l’atelier techno. Retrouvez quatre couleurs en dix essais, en utilisant les indices de chaque proposition.
 
-- Dépôt : https://github.com/BlackCat98Simo/code-secret
-- Application : ouvrir `index.html` dans un navigateur, sans serveur ni installation.
-- GitHub Pages : publication reportée ; aucun lien d’application en ligne disponible à ce stade.
+## État actuel
+
+- **Disponible :** version **0.2.0**, jeu local, historique, commandes au clavier et API commune de test **0.2** (fonctions JavaScript pour vérifier la partie affichée).
+- **Dépôt :** [BlackCat98Simo/code-secret](https://github.com/BlackCat98Simo/code-secret). Le code vérifié correspond au [commit df1dfe7](https://github.com/BlackCat98Simo/code-secret/commit/df1dfe7c88d496f344f69d807c6a2f909d3b7328).
+- **À compléter pour J1 :** GitHub Pages est reporté, donc pas encore de lien public pour jouer. Le tag `jalon-1` existe seulement localement sur `df1dfe7` et reste à publier. Les modifications de documentation suivantes ne déplacent pas ce tag.
+
+## Commencer et jouer
+
+Aucune installation pour jouer. Téléchargez le dépôt avec **Code > Download ZIP**, extrayez tout le dossier, puis ouvrez [index.html](index.html) dans un navigateur récent. Gardez les fichiers du dossier ensemble. Le démarrage a été vérifié dans Chrome sur Windows.
+
+1. Une partie aléatoire démarre : quatre positions à choisir, compteur **Essai 1 / 10**, historique vide.
+2. Choisissez une couleur dans chacune des quatre listes, puis cliquez sur **Valider la proposition**. Les choix restent modifiables avant validation.
+3. Lisez les deux nombres, **bien placées** et **mal placées**, puis ajustez votre proposition. **Nouvelle partie** efface les essais et tire un code.
+
+Clavier : Tab pour parcourir les commandes, flèches pour les listes, Entrée pour valider. Les noms et lettres accompagnent les couleurs. Exemple : choisir trois couleurs puis valider doit afficher un refus, sans modifier le compteur ni l’historique ; compléter la quatrième permet de compter un essai.
 
 ## Règles et sources
 
-Retrouver quatre couleurs ordonnées parmi **rouge, bleu, vert, jaune, orange, violet**, avec répétitions, en dix essais. Une proposition invalide ne consomme aucun essai. Chaque indice compte les bien placées, puis les mal placées parmi les occurrences restantes ; chaque pion compte une fois. Quatre bien placées gagnent, même au dixième essai. Après victoire ou défaite, les propositions sont bloquées ; une nouvelle partie efface l’historique.
+Le secret contient quatre couleurs ordonnées parmi **rouge, bleu, vert, jaune, orange, violet**, avec répétitions. Dix propositions valides au maximum. Les indices comptent d’abord les bien placées, puis les mal placées parmi les occurrences restantes, chacune une seule fois. Ils ne désignent aucune position. Quatre bien placées donnent la victoire, même au dixième essai ; sinon, la partie est perdue après dix essais. Les propositions sont ensuite bloquées. Le code n’est pas révélé séparément.
 
-Sources du cours : *Projet — Code secret en couleurs, inspiré du Mastermind*, édition 2.2, annexe **code-couleurs-1.0** ; *API commune de test — Code secret en couleurs*, contrat **0.2**, édition Google 1.5. La solution n’est pas révélée séparément, conformément au contrat API.
+Références fournies dans le cours : *Projet — Code secret en couleurs, inspiré du Mastermind*, édition 2.2, annexe **code-couleurs-1.0** ; *API commune de test — Code secret en couleurs*, contrat **0.2**, édition Google 1.5. Les PDF ne sont pas inclus au dépôt et leur lien public n’a pas été fourni. Les guides README/AGENTS, version 1.0, et l’*Atelier 4 du 11 novembre 2026*, édition 1.25, guident la documentation ; les exercices bonus sont exclus.
 
-## Choix effectué avec Codex
+## Choix fait avec Codex
 
-La décision retenue est de séparer le moteur (`game.js`) de l’affichage (`app.js`), tout en conservant **une seule instance de partie** pour les commandes visibles et l’API. Cela permet de vérifier les règles séparément et évite qu’un jeu destiné seulement aux tests donne des résultats différents de l’écran. L’adaptateur expose des promesses qui se résolvent après la mise à jour de l’interface. Les listes natives de couleurs offrent un choix modifiable au clavier et au toucher ; lettres et noms complètent les couleurs. Aucun compte, serveur applicatif, service d’IA ou accès externe n’est nécessaire pendant une partie.
+Le moteur et l’affichage sont séparés, mais l’interface et l’API utilisent **la même partie** : les tests peuvent ainsi contrôler ce que voit le joueur. Les listes natives, les noms et les lettres facilitent le choix au clavier et l’identification des couleurs. Ces choix d’interface sont distincts des règles du jeu.
 
-## API de test 0.2
+## Vérifier
 
-Ouvrir `index.html?test=1` (ajouter `&test=1` si d’autres paramètres existent), puis utiliser la console du navigateur. L’API n’existe pas sans `test=1`. En mode test, l’état initial est `not-started` ; en mode normal, une partie aléatoire démarre automatiquement.
-
-```js
-const api = window.codeSecretTest;
-api.version;     // "0.2"
-api.getConfig(); // synchrone, copie de la configuration commune
-await api.startGame({ secret: ["rouge", "rouge", "bleu", "vert"] });
-await api.submitGuess(["rouge", "bleu", "rouge", "rouge"]);
-// attempts: 1, lastResult: { wellPlaced: 1, misplaced: 2 }
-api.getState();  // synchrone, copie indépendante de l’état affiché
-await api.startGame(); // nouvelle partie aléatoire
-```
-
-`submitGuess` résout les refus prévus avec `lastError` ; seul ce champ change. Priorité : `game-not-started`, `game-finished`, `invalid-type`, `invalid-length`, `invalid-color`. Un `startGame` invalide rejette avec une `Error` ayant `code` et `message`, sans modifier la partie ni l’écran. Les états n’exposent aucun champ `secret` ou `solution`.
-
-## Correction expliquée et preuves avant/après
-
-Le premier prototype utilisait `secret.includes(couleur)` pour les mal placées : il réutilisait des occurrences déjà comptées. Pour le secret rouge–rouge–bleu–vert et la proposition rouge–rouge–rouge–rouge, **attendu : 2 bien / 0 mal ; obtenu avant : 2 bien / 2 mal**. Le moteur corrigé retire d’abord les bien placées, puis retire chaque occurrence restante dès qu’elle est utilisée : **obtenu après : 2 bien / 0 mal**.
-
-Preuves conservées : [prototype avant correction](docs/score-before.js), [première exécution : 5 succès / 2 échecs](docs/tests-before.txt), [mêmes 7 tests après correction : 7 succès](docs/tests-after.txt). Le prototype archivé n’est pas chargé par le jeu. Pour reproduire le cas isolé avec Node.js :
-
-```powershell
-$env:BEFORE='1'; node --test tests/score-regression.cjs # échec attendu : 2/2
-Remove-Item Env:BEFORE
-node --test tests/score-regression.cjs # succès attendu : 2/0
-```
-
-Autre adaptation : la première interface révélait le code en fin de partie. Le contrat 0.2 interdit cette révélation indépendante ; elle a été retirée de l’écran et de l’état retourné. Le test navigateur contrôle son absence après défaite.
-
-## Vérifications du 20 novembre 2026
-
-Résultats attendus écrits dans les assertions avant exécution :
-
-| Vérification | Attendu | Obtenu |
-| --- | --- | --- |
-| T01 à T09 du contrat | Indices et états du tableau officiel | Conforme dans le moteur et via l’API du navigateur |
-| Saisie invalide, priorité type/longueur/couleur | Refus, aucun essai ajouté | Conforme |
-| Refus au 9e, victoire au 10e | 9 essais puis `won` à 10 | Conforme |
-| Défaite et proposition après fin | `lost` à 10, puis `game-finished` ; historique inchangé | Conforme |
-| Démarrage invalide | Promesse rejetée, état et écran inchangés | Conforme |
-| API et interface | Même historique, indices et compteur dans les deux sens | Conforme |
-| Rechargement en mode test | `not-started`, aucun ancien secret imposé | Conforme |
-| Copies et getters | Aucune mutation indirecte du jeu ou de l’écran | Conforme |
-| Clavier, redémarrage, largeurs 320/390/720 px | Commandes utilisables, historique remis à zéro, aucun débordement horizontal | Conforme dans Chrome automatisé |
-
-Exécuter les tests du moteur (Node.js, sans dépendance) :
+Depuis la racine du dossier, avec **Node.js** disponible, exécutez :
 
 ```sh
 node --test tests/game.test.cjs tests/score-regression.cjs
 ```
 
-**23 tests réussis**, résultat conservé dans [tests-api.txt](docs/tests-api.txt). Les anciennes sorties avant/après documentent la version initiale ; les preuves courantes sont `tests-api.txt` et `tests-browser-api.txt`.
+Le 20 novembre 2026, **23 tests automatisés réussis**, dont les neuf exemples du contrat, les erreurs et les fins de partie. Les tests du navigateur vérifient aussi la synchronisation de l’API avec l’écran. [Attendus, résultats, environnement et preuves](docs/verification.md).
 
-Test d’intégration facultatif avec Chrome installé : `npm install --no-save playwright`, puis `node tests/browser.cjs`. Il ouvre le fichier local, vérifie l’interface, les neuf cas via l’API, le cycle de vie et le clavier ; [résultat](docs/tests-browser-api.txt). Les captures générées dans `tmp/` servent à l’inspection visuelle et ne sont pas publiées.
+Correction documentée : pour le secret rouge–rouge–bleu–vert et quatre rouges proposés, attendu **2 bien / 0 mal** ; le prototype donnait **2 / 2**, le moteur corrigé donne **2 / 0**. Les preuves avant/après et le cas reproductible sont conservés dans le guide de vérification.
 
-## Limites et suite
+## Se repérer
 
-GitHub Pages est volontairement reporté : l’API n’a donc pas encore été vérifiée sur une URL publiée. Les essais de conformité sont ceux du projet, pas l’outil officiel de l’enseignant. Les dimensions mobiles sont simulées dans Chrome : essai tactile sur un vrai smartphone et vérification avec lecteur d’écran restent à faire. Aucune sauvegarde de partie, PWA ou installation hors ligne n’est fournie. Pour J2 : publier l’application, vérifier l’API en ligne, tester un vrai smartphone et recueillir le retour sur le jeu d’un camarade. Le lien public demandé pour J1 restera à compléter après activation de Pages.
+| Fichier | Rôle |
+| --- | --- |
+| [index.html](index.html), [style.css](style.css) | Page, règles affichées et présentation |
+| [game.js](game.js) | Moteur : validation, indices, état de la partie |
+| [app.js](app.js) | Commandes visibles et API sur la même instance |
+| [AGENTS.md](AGENTS.md) | Consignes durables pour travailler sur le projet |
+| [tests/](tests/) | Tests du moteur et du navigateur |
+| [Guide API](docs/api.md) | Accès avec `?test=1`, appels et erreurs |
+| [Vérifications](docs/verification.md) | Tests et correction avant/après |
+
+## Limites, questions ouvertes et reprise
+
+L’API est vérifiée localement, pas encore sur une URL publiée ni avec l’outil officiel de l’enseignant. Les largeurs mobiles sont simulées : téléphone réel, lecteur d’écran et relecture par un camarade restent à vérifier. Aucune sauvegarde de partie ni installation PWA (application web installable) n’est fournie.
+
+Questions ouvertes : l’interface reste-t-elle confortable sur un vrai téléphone ? L’API passera-t-elle l’outil enseignant sur la future version publiée ? Prochaines étapes : publier le tag et l’application, puis effectuer ces vérifications pour J2. La prise en compte d’AGENTS.md devra être contrôlée dans une nouvelle tâche ; sa seule présence ne garantit pas le résultat.
+
+Projet individuel maintenu dans le dépôt de **BlackCat98Simo**. Pour signaler un problème : [ouvrir une issue](https://github.com/BlackCat98Simo/code-secret/issues) avec les étapes, le résultat attendu, le résultat observé et la version utilisée, sans donnée privée. Aucun compte, paiement, service d’IA ou clé d’accès n’est intégré au jeu.
