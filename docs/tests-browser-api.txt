@@ -1,0 +1,1 @@
+PASS: interface (invalid input, history, restart/focus, win on tenth, loss, locking, keyboard, widths 320/390/720); API 0.2 (T01-T09, conditional exposure, initial state, config, Promises, imposed secret, UI/API synchronization both directions, atomic rejection, error priorities, independent copies, lifecycle, reload); no JS errors.

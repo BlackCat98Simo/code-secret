@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183d36">
+  <title>Code secret — À vous de déduire</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="game.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><a class="brand" href="./">ATELIER / JEUX DE LOGIQUE</a><span class="version">JALON 1 · v0.2.0</span></header>
+    <section class="intro"><p class="eyebrow">QUATRE COULEURS. UNE SEULE COMBINAISON.</p><h1>Code <em>secret.</em></h1><p>Observez les indices. Affinez votre intuition.<br>Vous avez dix essais pour percer le code.</p></section>
+    <div class="layout">
+      <section class="play card" aria-labelledby="play-title">
+        <div class="section-top"><h2 id="play-title">À vous de jouer</h2><span id="counter" class="badge">Essai 1 / 10</span></div>
+        <p class="hint">Choisissez une couleur pour chacune des quatre positions.</p>
+        <form id="guess-form">
+          <fieldset id="choices"><legend class="sr-only">Votre proposition, de gauche à droite</legend></fieldset>
+          <button class="primary" id="submit" type="submit">Valider la proposition <span aria-hidden="true">↗</span></button>
+        </form>
+        <p id="message" role="status" aria-live="polite">Le code est prêt. À vous de le découvrir.</p>
+        <div class="divider"></div>
+        <div class="section-top"><h2>Vos essais</h2><span id="remaining">10 restants</span></div>
+        <p id="empty" class="empty">Chaque essai vous rapproche de la solution.<br>Votre première proposition apparaîtra ici.</p>
+        <ol id="history" aria-label="Historique des propositions"></ol>
+        <button class="secondary" id="restart" type="button">↻ Nouvelle partie</button>
+      </section>
+      <aside>
+        <section class="rules card"><p class="eyebrow">LE PRINCIPE</p><h2>Un peu de méthode,<br>un déclic de logique.</h2>
+          <ol><li>Retrouvez un code de <strong>4 couleurs</strong> parmi les six ci-dessous. Une couleur peut se répéter.</li><li>Composez une proposition, puis validez. Vous disposez de <strong>10 essais</strong>.</li><li>Utilisez les deux indices pour déduire le code. Ils ne révèlent <strong>aucune position</strong>.</li></ol>
+          <div class="legend"><p><span class="indicator exact" aria-hidden="true"></span><strong>Bien placée</strong><br>Bonne couleur, bonne position.</p><p><span class="indicator near" aria-hidden="true"></span><strong>Mal placée</strong><br>Bonne couleur, autre position.</p></div>
+          <p class="hint">Chaque pion compte une seule fois : les bien placés d’abord, puis les mal placés parmi les pions restants.</p>
+          <h3>Les six couleurs</h3><div id="palette" class="palette"></div>
+          <details><summary>Clavier et règles de fin</summary><p>Tab pour parcourir les commandes, flèches pour choisir une couleur, Entrée pour valider. Sur téléphone, touchez les listes de couleurs.</p><p>Une proposition incomplète est refusée sans perdre d’essai. Quatre bien placées donnent la victoire, même au dixième essai. Sinon, après dix essais, la partie est perdue. Les propositions sont ensuite bloquées. Le code reste caché, conformément au contrat de test 0.2.</p><p>« Nouvelle partie » tire un nouveau code et efface l’historique. Le hasard peut choisir le même code.</p></details>
+        </section>
+        <p class="side-note">Un jeu solo inspiré du Mastermind.<br>Sans compte. Sans installation. Juste vous et le code.</p>
+      </aside>
+    </div>
+    <footer><span>Règles : code-couleurs-1.0</span><a href="https://github.com/BlackCat98Simo/code-secret">Le projet sur GitHub ↗</a></footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,15 @@
+✔ exemple 1 : ordre des couleurs (8.6503ms)
+✔ exemple 2 : rouges supplémentaires ignorés (0.5237ms)
+✔ répétitions mal placées : chaque occurrence compte une fois (0.385ms)
+✔ propositions invalides : aucun essai ni historique modifié (1.2368ms)
+✔ victoire au dixième essai prioritaire et partie verrouillée (4.8736ms)
+✔ défaite au dixième essai, secret révélé et blocage (1.4353ms)
+✔ redémarrage et protection des copies (0.7426ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1042.6019

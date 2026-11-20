@@ -1,0 +1,31 @@
+✔ exemple 1 : ordre des couleurs (12.7664ms)
+✔ exemple 2 : rouges supplémentaires ignorés (0.4532ms)
+✔ répétitions mal placées : chaque occurrence compte une fois (0.4373ms)
+✔ propositions invalides : aucun essai ni historique modifié (2.2724ms)
+✔ victoire au dixième essai prioritaire et partie verrouillée (3.6342ms)
+✔ défaite au dixième essai, secret absent et blocage (1.0458ms)
+✔ redémarrage et protection des copies (1.0105ms)
+✔ état initial et priorité game-not-started (0.7394ms)
+✔ priorité type, longueur, couleur et identifiants exacts (0.6865ms)
+✔ démarrage invalide atomique, même avec lastError existante (4.022ms)
+✔ refus au neuvième essai puis victoire au dixième (0.919ms)
+✔ copies profondes et getters sans effet (255.5857ms)
+✔ start sans options, undefined et objet vide réinitialisent (3.7248ms)
+✔ contrat T01 (0.6485ms)
+✔ contrat T02 (0.2338ms)
+✔ contrat T03 (0.2927ms)
+✔ contrat T04 (0.2048ms)
+✔ contrat T05 (0.2802ms)
+✔ contrat T06 (0.3128ms)
+✔ contrat T07 (0.273ms)
+✔ contrat T08 (0.2151ms)
+✔ contrat T09 (0.2065ms)
+✔ un rouge ne peut pas être compté deux fois (6.3723ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1237.9588

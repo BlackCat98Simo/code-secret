@@ -1,0 +1,69 @@
+✔ exemple 1 : ordre des couleurs (14.2195ms)
+✖ exemple 2 : rouges supplémentaires ignorés (12.7518ms)
+✖ répétitions mal placées : chaque occurrence compte une fois (2.8315ms)
+✔ propositions invalides : aucun essai ni historique modifié (8.1737ms)
+✔ victoire au dixième essai prioritaire et partie verrouillée (1.1176ms)
+✔ défaite au dixième essai, secret révélé et blocage (0.6245ms)
+✔ redémarrage et protection des copies (0.748ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 5
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 655.71
+
+✖ failing tests:
+
+test at tests\game.test.cjs:10:1
+✖ exemple 2 : rouges supplémentaires ignorés (12.7518ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   misplaced: 2,
+  -   misplaced: 0,
+      wellPlaced: 2
+    }
+  
+      at TestContext.<anonymous> (<projet>\tests\game.test.cjs:11:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { wellPlaced: 2, misplaced: 2 },
+    expected: { wellPlaced: 2, misplaced: 0 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\game.test.cjs:13:1
+✖ répétitions mal placées : chaque occurrence compte une fois (2.8315ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   misplaced: 4,
+  -   misplaced: 3,
+      wellPlaced: 0
+    }
+  
+      at TestContext.<anonymous> (<projet>\tests\game.test.cjs:14:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { wellPlaced: 0, misplaced: 4 },
+    expected: { wellPlaced: 0, misplaced: 3 },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
